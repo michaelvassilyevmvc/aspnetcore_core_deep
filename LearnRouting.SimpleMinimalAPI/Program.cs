@@ -17,9 +17,9 @@ app.UseEndpoints(endpoints =>
     {
         await context.Response.WriteAsync("Put Employees\r\n");
     });
-    endpoints.MapDelete("/employees", async (HttpContext context) =>
+    endpoints.MapDelete("/employees/{id}", async (HttpContext context) =>
     {
-        await context.Response.WriteAsync("Delete Employee\r\n");
+        await context.Response.WriteAsync($"Delete Employee id is {context.Request.RouteValues["id"]}\r\n");
     });
     
 });
