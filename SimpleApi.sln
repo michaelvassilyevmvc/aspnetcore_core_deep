@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleApi.Web", "SimpleApi.Web\SimpleApi.Web.csproj", "{A8D69C20-069A-4024-ADA4-826069CCAF80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareApi.Web", "MiddlewareApi.Web\MiddlewareApi.Web.csproj", "{CCA304AC-0888-41A9-B30C-4EAB4A3A33EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnRouting.SimpleMinimalAPI", "LearnRouting.SimpleMinimalAPI\LearnRouting.SimpleMinimalAPI.csproj", "{A98862A6-8856-4BF5-8B2E-E9C0306E5994}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8D69C20-069A-4024-ADA4-826069CCAF80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D69C20-069A-4024-ADA4-826069CCAF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D69C20-069A-4024-ADA4-826069CCAF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D69C20-069A-4024-ADA4-826069CCAF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA304AC-0888-41A9-B30C-4EAB4A3A33EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA304AC-0888-41A9-B30C-4EAB4A3A33EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA304AC-0888-41A9-B30C-4EAB4A3A33EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA304AC-0888-41A9-B30C-4EAB4A3A33EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98862A6-8856-4BF5-8B2E-E9C0306E5994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98862A6-8856-4BF5-8B2E-E9C0306E5994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98862A6-8856-4BF5-8B2E-E9C0306E5994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98862A6-8856-4BF5-8B2E-E9C0306E5994}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
