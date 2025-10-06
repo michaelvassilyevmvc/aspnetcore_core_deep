@@ -44,23 +44,15 @@ app.UseEndpoints(endpoints =>
     //     }
     // });
 
-    endpoints.MapPost("/employees", async context =>
+    endpoints.MapPost("/employees", (Employee employee) =>
     {
-        using var reader = new StreamReader(context.Request.Body);
-        var body = await reader.ReadToEndAsync();
-        context.Response.ContentType = "text/html";
-        var employee = JsonSerializer.Deserialize<Employee>(body);
-        if (employee is not null)
+        if (employee is null || employee.Id <= 0)
         {
-            context.Response.StatusCode = 201;
-            EmployeesRepository.AddEmployee(employee);
-            await context.Response.WriteAsync("Employee is inserted!");
+            return "Employee is not provided or is not valid.";
         }
-        else
-        {
-            context.Response.StatusCode = 404;
-            await context.Response.WriteAsync("Employee does not exist!");
-        }
+
+        EmployeesRepository.AddEmployee(employee);
+        return "Employee added successfully.";
     });
 
     endpoints.MapPut("/employees/{id}", async context =>
@@ -110,16 +102,44 @@ app.UseEndpoints(endpoints =>
         }
     });
 
-    endpoints.MapGet("/employees", ([FromQuery(Name = "id")]int[] ids) =>
+    endpoints.MapGet("/employees", ([FromQuery(Name = "id")] int[] ids) =>
     {
         var employees = EmployeesRepository.GetEmployees();
         var res = employees.Where(x => ids.Contains(x.Id))
             .ToList();
         return res;
     });
+
+    endpoints.MapGet("/people", (Person? p) =>
+    {
+        return $"Id is {p?.Id}; Name is {p?.Name}";
+    });
 });
 
 app.Run();
+
+class Person
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+
+    public static ValueTask<Person?> BindAsync(HttpContext context)
+    {
+        var idStr = context.Request.Query["id"];
+        var nameStr = context.Request.Query["name"];
+
+        if (int.TryParse(idStr, out var id))
+        {
+            return new ValueTask<Person?>(new Person
+            {
+                Id = id,
+                Name = nameStr
+            });
+        }
+
+        return new ValueTask<Person?>(Task.FromResult<Person?>(null));
+    }
+}
 
 class GetEmployeeParameter
 {
