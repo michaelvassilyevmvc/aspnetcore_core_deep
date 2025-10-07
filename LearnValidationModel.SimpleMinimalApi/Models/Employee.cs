@@ -8,6 +8,7 @@ public class Employee
     public int Id { get; set; }
     [Required] public string Name { get; set; }
     [Required] public string Position { get; set; }
+    
 
     [Required]
     [Range(50000, 200000)]
