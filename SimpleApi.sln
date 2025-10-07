@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareApi.Web", "Middle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnRouting.SimpleMinimalAPI", "LearnRouting.SimpleMinimalAPI\LearnRouting.SimpleMinimalAPI.csproj", "{A98862A6-8856-4BF5-8B2E-E9C0306E5994}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnValidationModel.SimpleMinimalApi", "LearnValidationModel.SimpleMinimalApi\LearnValidationModel.SimpleMinimalApi.csproj", "{11BA7CC1-218A-4792-99F8-751114ED6304}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A98862A6-8856-4BF5-8B2E-E9C0306E5994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98862A6-8856-4BF5-8B2E-E9C0306E5994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98862A6-8856-4BF5-8B2E-E9C0306E5994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11BA7CC1-218A-4792-99F8-751114ED6304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11BA7CC1-218A-4792-99F8-751114ED6304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11BA7CC1-218A-4792-99F8-751114ED6304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11BA7CC1-218A-4792-99F8-751114ED6304}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
