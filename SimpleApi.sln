@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnRouting.SimpleMinimalA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnValidationModel.SimpleMinimalApi", "LearnValidationModel.SimpleMinimalApi\LearnValidationModel.SimpleMinimalApi.csproj", "{11BA7CC1-218A-4792-99F8-751114ED6304}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment4", "Assignment4\Assignment4.csproj", "{80E47AB2-A9AC-409B-A9FC-D5640A7458D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnMinimalApiResult", "LearnMinimalApiResult\LearnMinimalApiResult.csproj", "{16B0BEC7-AEA8-4203-B8B8-F39209AE56F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{11BA7CC1-218A-4792-99F8-751114ED6304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11BA7CC1-218A-4792-99F8-751114ED6304}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11BA7CC1-218A-4792-99F8-751114ED6304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80E47AB2-A9AC-409B-A9FC-D5640A7458D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80E47AB2-A9AC-409B-A9FC-D5640A7458D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80E47AB2-A9AC-409B-A9FC-D5640A7458D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80E47AB2-A9AC-409B-A9FC-D5640A7458D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16B0BEC7-AEA8-4203-B8B8-F39209AE56F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16B0BEC7-AEA8-4203-B8B8-F39209AE56F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16B0BEC7-AEA8-4203-B8B8-F39209AE56F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16B0BEC7-AEA8-4203-B8B8-F39209AE56F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
