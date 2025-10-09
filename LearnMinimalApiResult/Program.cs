@@ -13,15 +13,18 @@ app.MapGet("/employees", () =>
 });
 
 app.MapPost("/employees", (Employee employee) =>
-{
-    if (employee is null || employee.Id <= 0)
     {
-        return Results.BadRequest("Employee is not provided or is not valid.");
-    }
+        if (employee is null || employee.Id < 0)
+        {
+            return Results.ValidationProblem(new Dictionary<string, string[]>
+            {
+                { "id", new[] { "Employee is not provided or is not valid." } }
+            });
+        }
 
-    EmployeesRepository.AddEmployee(employee);
-    return Results.Ok("Employee added successfully.");
-
-}).WithParameterValidation();
+        EmployeesRepository.AddEmployee(employee);
+        return TypedResults.Created($"/employee/{employee.Id}", employee);
+    })
+    .WithParameterValidation();
 
 app.Run();

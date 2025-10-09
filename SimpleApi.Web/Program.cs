@@ -124,6 +124,8 @@ public static class EmployeesRepository
 
     public static void AddEmployee(Employee employee)
     {
+        var max = Employees.Max(x => x.id);
+        employee = new Employee(max + 1, employee.name);
         Employees.Add(employee);
     }
 

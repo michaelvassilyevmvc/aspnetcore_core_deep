@@ -1,4 +1,6 @@
-﻿namespace LearnMinimalApiResult.Models
+﻿using System.Runtime.CompilerServices;
+
+namespace LearnMinimalApiResult.Models
 {
     public static class EmployeesRepository
     {
@@ -20,6 +22,8 @@
         {
             if (employee is not null)
             {
+                var max = employees.Max(x => x.Id);
+                employee.Id = max + 1;
                 employees.Add(employee);
             }
         }
