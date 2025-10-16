@@ -1,3 +1,5 @@
+﻿This is a readme:
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddXmlSerializerFormatters();
