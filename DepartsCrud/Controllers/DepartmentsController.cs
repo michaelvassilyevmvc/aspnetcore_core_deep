@@ -35,21 +35,22 @@ public class DepartmentsController : Controller
             return Content("<h3 style='color:red'>Department not found</h3>", "text/html");
         }
 
-        var html = $@"
-            <h1>Department details
-            <form method='post' action='/departments/edit'>
-                <input type='hidden' name='Id' value='{department.Id}' />
-                <label>Name: <input type='text' name='Name' value='{department.Name}' /> </label><br />
-                <label>Description: <input type='text' name='Description' value='{department.Description}' /> </label><br />
-                <br />
-                <a href='/departments'>Cancel</a>
-                <button type='submit'>Update</button>
-            </form>
-<form method='post' action='/departments/delete/{department.Id}'>
-<button type='submit' style='background-color:red;color:white;'>Delete</button>
-</form>
-        ";
-        return Content(html, "text/html");
+        return View(department);
+//         var html = $@"
+//             <h1>Department details
+//             <form method='post' action='/departments/edit'>
+//                 <input type='hidden' name='Id' value='{department.Id}' />
+//                 <label>Name: <input type='text' name='Name' value='{department.Name}' /> </label><br />
+//                 <label>Description: <input type='text' name='Description' value='{department.Description}' /> </label><br />
+//                 <br />
+//                 <a href='/departments'>Cancel</a>
+//                 <button type='submit'>Update</button>
+//             </form>
+// <form method='post' action='/departments/delete/{department.Id}'>
+// <button type='submit' style='background-color:red;color:white;'>Delete</button>
+// </form>
+//         ";
+        // return Content(html, "text/html");
     }
 
     [HttpPost]
