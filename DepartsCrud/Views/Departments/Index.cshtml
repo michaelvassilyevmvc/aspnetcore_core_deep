@@ -7,16 +7,40 @@
 }
 
 <!DOCTYPE html>
-
-<h1>Department List</h1>
-<ul>
+<head>
+    <title>List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Department</h1>
     @if (Model is not null && Model.Count > 0)
     {
-        @foreach (var department in Model)
-        {
-            <li><a href="/departments/details/@department.Id">@department.Name - @department.Description</a></li>
-        }
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <td>@department.Name</td>
+                    <td>@department.Description</td>
+                    <td><a href="/departments/details/@department.Id" class="btn btn-link">Edit</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
     }
-</ul>
-<br/>
-<a href='/departments/create'>Add Department</a>
+    <br/>
+    <a href='/departments/create' class="btn btn-primary">Add</a></div>
+</body>
