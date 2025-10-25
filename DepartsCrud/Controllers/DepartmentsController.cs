@@ -9,21 +9,8 @@ public class DepartmentsController : Controller
     public IActionResult Index()
     {
         var departments = DepartmentsRepository.GetDepartments();
-        var html = $@"
-        <h1>Departments</h1>
-        <ul>
-        {
-            string.Join("", departments.Select(d => $@"
-            <li>
-                <a href='/departments/details/{d.Id}'>{d.Name} ({d.Description})</a>
-            </li>
-        "))
-        }
-        </ul>
-<br />
-<a href='/departments/create'>Add Department</a>
-        ";
-        return Content(html, "text/html");
+
+        return View(departments);
     }
 
     [HttpGet]
@@ -36,21 +23,6 @@ public class DepartmentsController : Controller
         }
 
         return View(department);
-//         var html = $@"
-//             <h1>Department details
-//             <form method='post' action='/departments/edit'>
-//                 <input type='hidden' name='Id' value='{department.Id}' />
-//                 <label>Name: <input type='text' name='Name' value='{department.Name}' /> </label><br />
-//                 <label>Description: <input type='text' name='Description' value='{department.Description}' /> </label><br />
-//                 <br />
-//                 <a href='/departments'>Cancel</a>
-//                 <button type='submit'>Update</button>
-//             </form>
-// <form method='post' action='/departments/delete/{department.Id}'>
-// <button type='submit' style='background-color:red;color:white;'>Delete</button>
-// </form>
-//         ";
-        // return Content(html, "text/html");
     }
 
     [HttpPost]
