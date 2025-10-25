@@ -35,12 +35,17 @@
                 <tr>
                     <td>@department.Name</td>
                     <td>@department.Description</td>
-                    <td><a href="/departments/details/@department.Id" class="btn btn-link">Edit</a></td>
+                    <td><a href="/departments/details/@department.Id" class="btn btn-link">Edit</a>
+                        <form method="post" action="/departments/delete/@department.Id" style="display: inline-block">
+                            <button type="submit" class="btn btn-link">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
             </tbody>
         </table>
     }
     <br/>
-    <a href='/departments/create' class="btn btn-primary">Add</a></div>
+    <a href='/departments/create' class="btn btn-primary">Add</a>
+</div>
 </body>
