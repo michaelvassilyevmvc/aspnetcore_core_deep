@@ -7,16 +7,42 @@
 }
 
 <!DOCTYPE html>
+<head>
+    <title>List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-<h1>Department List</h1>
-<ul>
-    @if (Model is not null && Model.Count > 0)
-    {
-        @foreach (var department in Model)
+</head>
+<body>
+<div class="container">
+    <h1>Department List</h1>
+    <form method="post" action="/departments/delete">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        @if (Model is not null && Model.Count > 0)
         {
-            <li><a href="/departments/details/@department.Id">@department.Name - @department.Description</a></li>
+            @foreach (var department in Model)
+            {
+                <input type="text" hidden="hidden" name="Id" value="@department.Id" />
+                <a href="/departments/details/@department.Id" style="text-decoration: none;">
+                    <div class="col">
+                        <div class="card" style="position: relative;">
+                            <div class="card-body">
+                                <h5 class="card-title">@department.Name</h5>
+                                <p class="card-text">@department.Description</p>
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="position: absolute; top:0;right:0;font-size:14px;">&times;</button>
+                        </div>
+                    </div>
+                </a>
+            }
         }
-    }
-</ul>
-<br/>
-<a href='/departments/create'>Add Department</a>
+        else
+        {
+            <h1>Department not exists</h1>
+        }
+    </div>
+    <br/>
+    <a class="btn btn-primary" href='/departments/create'>Add Department</a>
+    </form>
+</div>
+</body>
