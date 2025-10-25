@@ -1,4 +1,8 @@
-﻿<!doctype html>
+﻿@{
+    var days = (new DateTime(DateTime.Today.Year, 12, 25) - DateTime.Today).Days;
+    string color = days <= 10 ? "green" : "red";
+}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,9 +12,9 @@
     <title>Home page</title>
 </head>
 <body>
-@{
-    var days = (new DateTime(DateTime.Today.Year, 12, 25) - DateTime.Today).Days;
-    string color = days <= 10 ? "green" : "red";
+@if (true)
+{
+    @:Happy holidays
 }
 
 @switch (color)
@@ -26,6 +30,8 @@
     }
         break;
 }
+
+@days <text> days before Christmas</text>
 
 
 @* @if (days <= 10) *@
