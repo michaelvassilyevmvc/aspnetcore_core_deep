@@ -1,7 +1,5 @@
-﻿
-
-
-@{
+﻿@{
+ViewBag.Title = "Home Page";
     var days = (new DateTime(DateTime.Today.Year, 12, 25) - DateTime.Today).Days;
     var color = days <= 10 ? "green" : "red";
 }
