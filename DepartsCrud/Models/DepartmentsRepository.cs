@@ -2,14 +2,17 @@
 
 public static class DepartmentsRepository
 {
-    private static List<Department> Departments = new List<Department>
+    private static readonly List<Department> Departments = new()
     {
         new Department(1, "Sales", "Sales Department"),
         new Department(2, "Engineering", "Engineering Department"),
         new Department(3, "QA", "Quanlity Assurance")
     };
 
-    public static List<Department> GetDepartments() => Departments;
+    public static List<Department> GetDepartments()
+    {
+        return Departments;
+    }
 
     public static Department? GetDepartmentById(int id)
     {
@@ -20,7 +23,7 @@ public static class DepartmentsRepository
     {
         if (Department is not null)
         {
-            int maxId = Departments.Max(x => x.Id);
+            var maxId = Departments.Max(x => x.Id);
             Department.Id = maxId + 1;
             Departments.Add(Department);
         }

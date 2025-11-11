@@ -26,10 +26,7 @@ app.MapPost("/employees", (Employee employee) =>
 // from query
 app.MapPost("/auth", (Auth? auth) =>
     {
-        if (auth is not null)
-        {
-            return "Authorization is succeed!";
-        }
+        if (auth is not null) return "Authorization is succeed!";
 
         return "Authorization is failed!";
     })
@@ -37,14 +34,14 @@ app.MapPost("/auth", (Auth? auth) =>
 
 app.Run();
 
-class User
+internal class User
 {
     public int Id { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
 }
 
-class Auth
+internal class Auth
 {
     [Required]
     [EmailAddress]
@@ -68,14 +65,12 @@ class Auth
         var confStr = context.Request.Query["conf"];
 
         if (!string.IsNullOrWhiteSpace(emailStr))
-        {
             return new ValueTask<Auth?>(new Auth
             {
                 Email = emailStr,
                 Password = passStr,
                 ConfirmPassword = confStr
             });
-        }
 
         return new ValueTask<Auth?>(Task.FromResult<Auth?>(null));
     }

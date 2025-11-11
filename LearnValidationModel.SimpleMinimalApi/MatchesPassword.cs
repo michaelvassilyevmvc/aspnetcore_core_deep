@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using LearnValidationModel.SimpleMinimalAPI.Models;
 
 namespace LearnValidationModel.SimpleMinimalApi;
 
-public class MatchesPassword: ValidationAttribute
+public class MatchesPassword : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
@@ -11,9 +10,7 @@ public class MatchesPassword: ValidationAttribute
         if (auth is not null &&
             !string.IsNullOrWhiteSpace(auth.Password) &&
             !auth.Password.Equals(auth.ConfirmPassword))
-        {
-            return  new ValidationResult("Passwords do not match");
-        }
+            return new ValidationResult("Passwords do not match");
         return ValidationResult.Success;
     }
 }

@@ -1,19 +1,16 @@
-using System.Runtime.InteropServices.ComTypes;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.Run(async (context) =>
+app.Run(async context =>
 {
     context.Response.Headers["Content-Type"] = "text/html";
     if (context.Request.Path.Equals("/"))
     {
         await context.Response.WriteAsync("<h1>HEADERS</h1>");
         foreach (var header in context.Request.Headers)
-        {
             await context.Response.WriteAsync($"<p><b>{header.Key}</b>: {header.Value}</p>");
-        }
     }
     else if (context.Request.Path.StartsWithSegments("/employees"))
     {
@@ -38,9 +35,7 @@ app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("<h1>List of Employees!</h1>");
                 foreach (var employee in EmployeesRepository.Employees)
-                {
                     await context.Response.WriteAsync($"<p><b>{employee.id}</b>{employee.name}</p>");
-                }
             }
         }
         else if (context.Request.Method == "POST")
@@ -61,15 +56,11 @@ app.Run(async (context) =>
             var employee = JsonSerializer.Deserialize<Employee>(body);
             if (employee is not null)
             {
-                var id = Int32.Parse(context.Request.Query["id"]);
+                var id = int.Parse(context.Request.Query["id"]);
                 if (EmployeesRepository.UpdateEmployee(id, employee))
-                {
                     context.Response.StatusCode = 200;
-                }
                 else
-                {
                     context.Response.StatusCode = 404;
-                }
             }
         }
         else if (context.Request.Method == "DELETE")
@@ -98,24 +89,24 @@ public record Employee(int id, string name);
 
 public static class EmployeesRepository
 {
-    public static List<Employee> Employees { get; set; }
-
     static EmployeesRepository()
     {
         Employees = new List<Employee>
         {
-            new Employee(1, "Alice Johnson"),
-            new Employee(2, "Bob Smith"),
-            new Employee(3, "Charlie Brown"),
-            new Employee(4, "Diana Prince"),
-            new Employee(5, "Ethan Clark"),
-            new Employee(6, "Fiona Davis"),
-            new Employee(7, "George Miller"),
-            new Employee(8, "Hannah Wilson"),
-            new Employee(9, "Ian Thomas"),
-            new Employee(10, "Julia Roberts")
+            new(1, "Alice Johnson"),
+            new(2, "Bob Smith"),
+            new(3, "Charlie Brown"),
+            new(4, "Diana Prince"),
+            new(5, "Ethan Clark"),
+            new(6, "Fiona Davis"),
+            new(7, "George Miller"),
+            new(8, "Hannah Wilson"),
+            new(9, "Ian Thomas"),
+            new(10, "Julia Roberts")
         };
     }
+
+    public static List<Employee> Employees { get; set; }
 
     public static Employee? GetEmployee(int id)
     {

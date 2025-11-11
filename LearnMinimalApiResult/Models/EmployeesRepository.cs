@@ -1,61 +1,61 @@
-﻿using System.Runtime.CompilerServices;
+﻿namespace LearnMinimalApiResult.Models;
 
-namespace LearnMinimalApiResult.Models
+public class EmployeesRepository : IEmployeesRepository
 {
-    public class EmployeesRepository : IEmployeesRepository
+    private readonly List<Employee> employees = new()
     {
-        private List<Employee> employees = new List<Employee>
-        {
-            new Employee(1, "John Doe", "Engineer", 60000),
-            new Employee(2, "Jane Smith", "Manager", 75000),
-            new Employee(3, "Sam Brown", "Technician", 50000)
-        };
+        new Employee(1, "John Doe", "Engineer", 60000),
+        new Employee(2, "Jane Smith", "Manager", 75000),
+        new Employee(3, "Sam Brown", "Technician", 50000)
+    };
 
-        public List<Employee> GetEmployees() => employees;
+    public List<Employee> GetEmployees()
+    {
+        return employees;
+    }
 
-        public Employee? GetEmployeeById(int id)
+    public Employee? GetEmployeeById(int id)
+    {
+        return employees.FirstOrDefault(x => x.Id == id);
+    }
+
+    public void AddEmployee(Employee? employee)
+    {
+        if (employee is not null)
         {
-            return employees.FirstOrDefault(x => x.Id == id);
+            var max = employees.Max(x => x.Id);
+            employee.Id = max + 1;
+            employees.Add(employee);
         }
+    }
 
-        public void AddEmployee(Employee? employee)
+    public bool UpdateEmployee(Employee? employee)
+    {
+        if (employee is not null)
         {
-            if (employee is not null)
+            var emp = employees.FirstOrDefault(x => x.Id == employee.Id);
+            if (emp is not null)
             {
-                var max = employees.Max(x => x.Id);
-                employee.Id = max + 1;
-                employees.Add(employee);
-            }
-        }
+                emp.Name = employee.Name;
+                emp.Position = employee.Position;
+                emp.Salary = employee.Salary;
 
-        public bool UpdateEmployee(Employee? employee)
-        {
-            if (employee is not null)
-            {
-                var emp = employees.FirstOrDefault(x => x.Id == employee.Id);
-                if (emp is not null)
-                {
-                    emp.Name = employee.Name;
-                    emp.Position = employee.Position;
-                    emp.Salary = employee.Salary;
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public bool DeleteEmployee(int id)
-        {
-            var employee = employees.FirstOrDefault(x => x.Id == id);
-            if (employee is not null)
-            {
-                employees.Remove(employee);
                 return true;
             }
-
-            return false;
         }
+
+        return false;
+    }
+
+    public bool DeleteEmployee(int id)
+    {
+        var employee = employees.FirstOrDefault(x => x.Id == id);
+        if (employee is not null)
+        {
+            employees.Remove(employee);
+            return true;
+        }
+
+        return false;
     }
 }

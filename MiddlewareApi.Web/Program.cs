@@ -8,7 +8,7 @@ builder.Services.AddTransient<CustomExceptionHandingMiddleware>();
 var app = builder.Build();
 app.UseMiddleware<CustomExceptionHandingMiddleware>();
 // Middleware #1
-app.Use(async (HttpContext context, RequestDelegate next) =>
+app.Use(async (context, next) =>
 {
     await context.Response.WriteAsync("Before Middleware #1\r\n");
     throw new Exception("Middleware #2 Exception");
@@ -20,7 +20,7 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
 app.UseMiddleware<CustomMiddleware>();
 
 // Middleware #2
-app.Use(async (HttpContext context, RequestDelegate next) =>
+app.Use(async (context, next) =>
 {
     await context.Response.WriteAsync("Before Middleware #2\r\n");
     await next(context);
@@ -28,7 +28,7 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
 });
 
 // Middleware #3
-app.Use(async (HttpContext context, RequestDelegate next) =>
+app.Use(async (context, next) =>
 {
     await context.Response.WriteAsync("Before Middleware #3\r\n");
     await next(context);

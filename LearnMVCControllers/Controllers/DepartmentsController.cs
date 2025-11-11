@@ -18,7 +18,7 @@ public class DepartmentsController : Controller
     {
         return RedirectToAction(nameof(EmployeesController.GetEmployeesByDepartment),
             nameof(EmployeesController)
-                .Replace("Controller", ""), new { id = id });
+                .Replace("Controller", ""), new { id });
 
         // return LocalRedirect($"/employees/GetEmployeesByDepartment/{id}");
 
@@ -55,12 +55,8 @@ public class DepartmentsController : Controller
         ModelState.AddModelError("Description", "Description is required");
 
         foreach (var value in ModelState.Values)
-        {
-            foreach (var error in value.Errors)
-            {
-                Console.WriteLine(error.ErrorMessage);
-            }
-        }
+        foreach (var error in value.Errors)
+            Console.WriteLine(error.ErrorMessage);
 
         return department;
     }
@@ -92,7 +88,7 @@ public class DepartmentsController : Controller
     [Route("/download_cf")]
     public IActionResult ReturnContentFile()
     {
-        byte[] bytes = System.IO.File.ReadAllBytes("c:/temp/somefile.pdf");
+        var bytes = System.IO.File.ReadAllBytes("c:/temp/somefile.pdf");
         return File(bytes, "application/pdf");
     }
 }

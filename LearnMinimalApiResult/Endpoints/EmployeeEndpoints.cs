@@ -27,12 +27,10 @@ public static class EmployeeEndpoints
         app.MapPut("/employees/{id:int}", (int id, Employee employee, IEmployeesRepository employeesRepository) =>
         {
             if (id != employee.Id)
-            {
                 return Microsoft.AspNetCore.Http.Results.ValidationProblem(new Dictionary<string, string[]>
                 {
                     { "id", new[] { "Employee id is not the same as id." } }
                 });
-            }
 
             return employeesRepository.UpdateEmployee(employee)
                 ? TypedResults.NoContent()
@@ -55,12 +53,10 @@ public static class EmployeeEndpoints
         app.MapPost("/employees", (Employee employee, IEmployeesRepository employeesRepository) =>
             {
                 if (employee is null || employee.Id < 0)
-                {
                     return Microsoft.AspNetCore.Http.Results.ValidationProblem(new Dictionary<string, string[]>
                     {
                         { "id", new[] { "Employee is not provided or is not valid." } }
                     }, statusCode: 400);
-                }
 
                 employeesRepository.AddEmployee(employee);
                 return TypedResults.Created($"/employee/{employee.Id}", employee);

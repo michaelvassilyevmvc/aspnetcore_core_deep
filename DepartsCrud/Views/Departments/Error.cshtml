@@ -1,9 +1,8 @@
 ﻿@model List<string>
-<html>
-<head>
-    <title>Errors</title>
-</head>
-<body>
+@{
+    Layout = "_Layout";
+}
+
 <h1 style="color:red;">Errors:</h1>
 <ul>
     @if (Model is not null && Model.Count > 0)
@@ -14,5 +13,3 @@
         }
     }
 </ul>
-</body>
-</html>

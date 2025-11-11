@@ -8,17 +8,14 @@ builder.Services.AddSingleton<IEmployeesRepository, EmployeesRepository>();
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler();
-}
+if (!app.Environment.IsDevelopment()) app.UseExceptionHandler();
 
 app.UseStatusCodePages();
 
 
 app.MapGet("/", HtmlResult () =>
 {
-    string html = "<h2>Welcome to our API</h2> Our API is used to learn ASP.NET";
+    var html = "<h2>Welcome to our API</h2> Our API is used to learn ASP.NET";
     return new HtmlResult(html);
 });
 

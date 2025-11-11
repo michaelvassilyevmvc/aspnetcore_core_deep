@@ -18,12 +18,10 @@ public class DepartmentsController : Controller
     {
         var department = DepartmentsRepository.GetDepartmentById(id);
         if (department == null)
-        {
             return View("Error", new List<string>
             {
                 "Department not found"
             });
-        }
 
         return View(department);
     }
@@ -31,10 +29,7 @@ public class DepartmentsController : Controller
     [HttpPost]
     public IActionResult Edit(Department department)
     {
-        if (!ModelState.IsValid)
-        {
-            return View("Error", GetErrors());
-        }
+        if (!ModelState.IsValid) return View("Error", GetErrors());
 
         DepartmentsRepository.UpdateDepartment(department);
 
@@ -50,10 +45,7 @@ public class DepartmentsController : Controller
     [HttpPost]
     public IActionResult Create(Department department)
     {
-        if (!ModelState.IsValid)
-        {
-            return View("Error", GetErrors());
-        }
+        if (!ModelState.IsValid) return View("Error", GetErrors());
 
         DepartmentsRepository.AddDepartment(department);
         return RedirectToAction(nameof(Index));
@@ -76,14 +68,10 @@ public class DepartmentsController : Controller
 
     private List<string> GetErrors()
     {
-        List<string> errorMessages = new List<string>();
+        var errorMessages = new List<string>();
         foreach (var value in ModelState.Values)
-        {
-            foreach (var error in value.Errors)
-            {
-                errorMessages.Add(error.ErrorMessage);
-            }
-        }
+        foreach (var error in value.Errors)
+            errorMessages.Add(error.ErrorMessage);
 
         return errorMessages;
     }

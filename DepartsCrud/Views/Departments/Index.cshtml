@@ -1,51 +1,41 @@
 ﻿@using DepartsCrud.Models
-
 @model List<Department>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-<head>
-    <title>List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
-<body>
-<div class="container">
-    <h1>Department</h1>
-    @if (Model is not null && Model.Count > 0)
-    {
-        <table class="table table-striped">
-            <thead>
+
+<h1>Department</h1>
+@if (Model is not null && Model.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var department in Model)
+        {
             <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Description
-                </th>
-                <th></th>
+                <td>@department.Name</td>
+                <td>@department.Description</td>
+                <td><a href="/departments/details/@department.Id" class="btn btn-link">Edit</a>
+                    <form method="post" action="/departments/delete/@department.Id" style="display: inline-block">
+                        <button type="submit" class="btn btn-link">Delete</button>
+                    </form>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            @foreach (var department in Model)
-            {
-                <tr>
-                    <td>@department.Name</td>
-                    <td>@department.Description</td>
-                    <td><a href="/departments/details/@department.Id" class="btn btn-link">Edit</a>
-                        <form method="post" action="/departments/delete/@department.Id" style="display: inline-block">
-                            <button type="submit" class="btn btn-link">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-    }
-    <br/>
-    <a href='/departments/create' class="btn btn-primary">Add</a>
-</div>
-</body>
+        }
+        </tbody>
+    </table>
+}
+<br/>
+<a href="/departments/create" class="btn btn-primary">Add</a>

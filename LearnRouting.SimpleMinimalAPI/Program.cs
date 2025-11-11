@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text.Json;
 using LearnRouting.SimpleMinimalAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -46,10 +45,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapPost("/employees", (Employee employee) =>
     {
-        if (employee is null || employee.Id <= 0)
-        {
-            return "Employee is not provided or is not valid.";
-        }
+        if (employee is null || employee.Id <= 0) return "Employee is not provided or is not valid.";
 
         EmployeesRepository.AddEmployee(employee);
         return "Employee added successfully.";
@@ -110,15 +106,12 @@ app.UseEndpoints(endpoints =>
         return res;
     });
 
-    endpoints.MapGet("/people", (Person? p) =>
-    {
-        return $"Id is {p?.Id}; Name is {p?.Name}";
-    });
+    endpoints.MapGet("/people", (Person? p) => { return $"Id is {p?.Id}; Name is {p?.Name}"; });
 });
 
 app.Run();
 
-class Person
+internal class Person
 {
     public int Id { get; set; }
     public string? Name { get; set; }
@@ -129,19 +122,17 @@ class Person
         var nameStr = context.Request.Query["name"];
 
         if (int.TryParse(idStr, out var id))
-        {
             return new ValueTask<Person?>(new Person
             {
                 Id = id,
                 Name = nameStr
             });
-        }
 
         return new ValueTask<Person?>(Task.FromResult<Person?>(null));
     }
 }
 
-class GetEmployeeParameter
+internal class GetEmployeeParameter
 {
     [FromRoute] public int Id { get; set; }
     [FromQuery] public string Name { get; set; }
