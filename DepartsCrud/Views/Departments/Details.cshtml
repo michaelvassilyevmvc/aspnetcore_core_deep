@@ -3,7 +3,11 @@
     ViewBag.Title = "Department Details";
 }
 
-<h3>Department</h3>
+@section title_section
+{
+    <h3>Department</h3>
+}
+
 <form action="/departments/edit" method="post">
     <input type="hidden" name="Id" value="@Model.Id"/>
     <div class="row mb-3">
