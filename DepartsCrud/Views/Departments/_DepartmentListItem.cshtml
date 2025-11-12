@@ -1,0 +1,14 @@
+﻿@model Department
+
+@if (Model is not null)
+{
+    <tr>
+        <td>@Model.Name</td>
+        <td>@Model.Description</td>
+        <td><a href="/departments/details/@Model.Id" class="btn btn-link">Edit</a>
+            <form method="post" action="/departments/delete/@Model.Id" style="display: inline-block">
+                <button type="submit" class="btn btn-link">Delete</button>
+            </form>
+        </td>
+    </tr>
+}
