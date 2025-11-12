@@ -39,7 +39,7 @@ public class DepartmentsController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        return View();
+        return View(new Department());
     }
 
     [HttpPost]
