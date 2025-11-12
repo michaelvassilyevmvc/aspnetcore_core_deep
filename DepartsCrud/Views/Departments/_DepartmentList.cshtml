@@ -1,0 +1,14 @@
+﻿@model List<Department>
+
+@foreach (var department in Model)
+{
+    <tr>
+        <td>@department.Name</td>
+        <td>@department.Description</td>
+        <td><a href="/departments/details/@department.Id" class="btn btn-link">Edit</a>
+            <form method="post" action="/departments/delete/@department.Id" style="display: inline-block">
+                <button type="submit" class="btn btn-link">Delete</button>
+            </form>
+        </td>
+    </tr>
+}
