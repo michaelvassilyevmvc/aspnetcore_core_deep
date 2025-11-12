@@ -11,11 +11,17 @@ public class DepartmentsController : Controller
         return View();
     }
 
+    // [Route("/department-list/{filter?}")]
+    // public IActionResult SearchDepartments(string? filter)
+    // {
+    //     var departments = DepartmentsRepository.GetDepartments(filter);
+    //     return PartialView("_DepartmentList", departments);
+    // }
+    
     [Route("/department-list/{filter?}")]
     public IActionResult SearchDepartments(string? filter)
     {
-        var departments = DepartmentsRepository.GetDepartments(filter);
-        return PartialView("_DepartmentList", departments);
+        return ViewComponent("DepartmentList", new { filter });
     }
 
     [HttpGet]

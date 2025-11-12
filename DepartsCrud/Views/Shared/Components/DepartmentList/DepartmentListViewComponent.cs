@@ -6,9 +6,9 @@ namespace DepartsCrud.Views.Shared.Components.DepartmentList;
 [ViewComponent]
 public class DepartmentListViewComponent : ViewComponent
 {
-    public IViewComponentResult Invoke()
+    public IViewComponentResult Invoke(string? filter = null)
     {
-        var departments = DepartmentsRepository.GetDepartments();
+        var departments = DepartmentsRepository.GetDepartments(filter);
         return View(departments);
     }
 }

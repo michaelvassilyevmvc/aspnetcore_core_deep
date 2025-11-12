@@ -19,19 +19,18 @@
         <th></th>
     </tr>
     </thead>
-    <tbody>
-    @await Component.InvokeAsync("DepartmentList")
+    <tbody id="department-list">
     </tbody>
 </table>
 
 <br/>
 <a href="/departments/create" class="btn btn-primary">Add</a>
 
-@* <script> *@
-@*     document.querySelector("#search-button").addEventListener("click", async (e) => { *@
-@*         var filter = document.querySelector("#search-filter").value.trim(); *@
-@*         var response = await fetch(`/department-list/${filter}`); *@
-@*         var departmentsHTML = await response.text(); *@
-@*         document.querySelector("#department-list").innerHTML = departmentsHTML; *@
-@*     }) *@
-@* </script> *@
+<script>
+    document.querySelector("#search-button").addEventListener("click", async (e) => {
+        var filter = document.querySelector("#search-filter").value.trim();
+        var response = await fetch(`/department-list/${filter}`);
+        var departmentsHTML = await response.text();
+        document.querySelector("#department-list").innerHTML = departmentsHTML;
+    })
+</script>
