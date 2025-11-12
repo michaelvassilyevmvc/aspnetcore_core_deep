@@ -2,30 +2,33 @@
 
 public static class DepartmentsRepository
 {
-    private static readonly List<Department> Departments = new()
+    private static readonly List<Department> _departments = new()
     {
         new Department(1, "Sales", "Sales Department"),
         new Department(2, "Engineering", "Engineering Department"),
         new Department(3, "QA", "Quanlity Assurance")
     };
 
-    public static List<Department> GetDepartments()
+    public static List<Department> GetDepartments(string? filter = null)
     {
-        return Departments;
+        if (string.IsNullOrWhiteSpace(filter)) return _departments;
+        return _departments.Where(x => x.Name is not null && x.Name.ToLower()
+                .Contains(filter.ToLower()))
+            .ToList();
     }
 
     public static Department? GetDepartmentById(int id)
     {
-        return Departments.FirstOrDefault(x => x.Id == id);
+        return _departments.FirstOrDefault(x => x.Id == id);
     }
 
     public static void AddDepartment(Department? Department)
     {
         if (Department is not null)
         {
-            var maxId = Departments.Max(x => x.Id);
+            var maxId = _departments.Max(x => x.Id);
             Department.Id = maxId + 1;
-            Departments.Add(Department);
+            _departments.Add(Department);
         }
     }
 
@@ -33,7 +36,7 @@ public static class DepartmentsRepository
     {
         if (Department is not null)
         {
-            var emp = Departments.FirstOrDefault(x => x.Id == Department.Id);
+            var emp = _departments.FirstOrDefault(x => x.Id == Department.Id);
             if (emp is not null)
             {
                 emp.Name = Department.Name;
@@ -50,7 +53,7 @@ public static class DepartmentsRepository
     {
         if (Department is not null)
         {
-            Departments.Remove(Department);
+            _departments.Remove(Department);
             return true;
         }
 

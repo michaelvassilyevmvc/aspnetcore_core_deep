@@ -1,31 +1,36 @@
-﻿@model List<Department>
-
+﻿
 @{
     Layout = "_Layout";
     ViewBag.Title = "Departments";
 }
 
 
-<h1>Department</h1>
-@if (Model is not null && Model.Count > 0)
-{
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @await Html.PartialAsync("_DepartmentList", Model, ViewData)
-        </tbody>
-    </table>
-}
+@await Html.PartialAsync("_SearchBar")
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="department-list">
+    </tbody>
+</table>
+
 <br/>
 <a href="/departments/create" class="btn btn-primary">Add</a>
 
+<script>
+    document.querySelector("#search-button").addEventListener("click", async (e) => {
+        var filter = document.querySelector("#search-filter").value.trim();
+        var response = await fetch(`/department-list/${filter}`);
+        var departmentsHTML = await response.text();
+        document.querySelector("#department-list").innerHTML = departmentsHTML;
+    })
+</script>

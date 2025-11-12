@@ -8,9 +8,14 @@ public class DepartmentsController : Controller
     [HttpGet]
     public IActionResult Index()
     {
-        var departments = DepartmentsRepository.GetDepartments();
+        return View();
+    }
 
-        return View(departments);
+    [Route("/department-list/{filter?}")]
+    public IActionResult SearchDepartments(string? filter)
+    {
+        var departments = DepartmentsRepository.GetDepartments(filter);
+        return PartialView("_DepartmentList", departments);
     }
 
     [HttpGet]
