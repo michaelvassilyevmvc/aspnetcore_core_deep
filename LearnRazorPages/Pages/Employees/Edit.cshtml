@@ -8,13 +8,24 @@
 <h3>Employee details</h3>
 
 Employee Id: @Model.Id
+@if (Model is not null &&
+     Model.InputModel is not null && 
+     Model.InputModel.ErrorMessage is not null)
+{
+    <ul style="color:red">
+        @foreach (var errorMessage in Model.InputModel.ErrorMessage)
+        {
+            <li>@errorMessage</li>
+        }
 
+    </ul>
+}
 <br>
 <form method="post" action="/employees/edit/@Model.Id?handler=save">
     @Html.AntiForgeryToken()
-    <input type="hidden" name="inpuptmodel.id" value="@Model.Id" />
+    <input type="hidden" name="inpuptmodel.id" value="@Model.Id"/>
     Name:
-    <input type="text" name="inputmodel.name" value="@Model.InputModel?.Name" />
+    <input type="text" name="inputmodel.name" value="@Model.InputModel?.Name"/>
     <button type="submit">Save</button>
 </form>
 <br>
