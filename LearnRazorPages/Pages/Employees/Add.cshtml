@@ -1,8 +1,9 @@
 ﻿@page
 @model LearnRazorPages.Pages.Employees.Add
 
-@{
-    Layout = null;
-}
-
 <h3>Add Employee</h3>
+@await Html.PartialAsync("MyPartialView")
+@section messagebar
+{
+    <p> This is a message</p>
+}
