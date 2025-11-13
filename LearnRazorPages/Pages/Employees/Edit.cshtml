@@ -8,3 +8,17 @@
 <h3>Employee details</h3>
 
 Employee Id: @Model.Id
+
+<br>
+<form method="post" action="/employees/edit/@Model.Id?handler=save">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="inpuptmodel.id" value="@Model.Id" />
+    Name:
+    <input type="text" name="inputmodel.name" value="@Model.InputModel?.Name" />
+    <button type="submit">Save</button>
+</form>
+<br>
+<form method="post" action="/employees/edit/@Model.Id?handler=delete">
+    @Html.AntiForgeryToken()
+    <button type="submit">Delete</button>
+</form>
