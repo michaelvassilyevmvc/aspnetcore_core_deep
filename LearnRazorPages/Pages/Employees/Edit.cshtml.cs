@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LearnRazorPages.Pages;
+namespace LearnRazorPages.Pages.Employees;
 
-public class Employees : PageModel
+public class Edit : PageModel
 {
     public void OnGet()
     {
