@@ -5,29 +5,32 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LearnRazorPages.Pages.Employees;
 
-
 public class Edit : PageModel
 {
     [BindProperty(SupportsGet = true)] public string Id { get; set; }
 
-    [BindProperty]
-    public InputModel? InputModel { get; set; }
-    public void OnGet()
+    [BindProperty] public InputModel? InputModel { get; set; }
+
+    public IActionResult OnGet()
     {
+        return Page();
     }
 
-    public void OnPostSave()
+    public IActionResult OnPostSave()
     {
         if (!ModelState.IsValid)
         {
             InputModel.ErrorMessage = GetErrors();
+            return Page();
         }
+
+        return RedirectToPage("Index");
     }
 
     public void OnPostDelete()
     {
     }
-    
+
     private List<string> GetErrors()
     {
         var errorMessages = new List<string>();
@@ -41,10 +44,8 @@ public class Edit : PageModel
 
 public class InputModel
 {
-    
     public int? Id { get; set; }
-    [Required]
-    public string? Name { get; set; }
+    [Required] public string? Name { get; set; }
 
     public List<string>? ErrorMessage { get; set; }
 }
