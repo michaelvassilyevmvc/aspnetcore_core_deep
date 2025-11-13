@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnMVCControllers", "Lear
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartsCrud", "DepartsCrud\DepartsCrud.csproj", "{AE7C25F7-8A2D-432A-B1D9-3CB012B2ECED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnRazorPages", "LearnRazorPages\LearnRazorPages.csproj", "{E2A71205-CFDC-4142-9086-8F5126507B1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{AE7C25F7-8A2D-432A-B1D9-3CB012B2ECED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE7C25F7-8A2D-432A-B1D9-3CB012B2ECED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE7C25F7-8A2D-432A-B1D9-3CB012B2ECED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2A71205-CFDC-4142-9086-8F5126507B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A71205-CFDC-4142-9086-8F5126507B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A71205-CFDC-4142-9086-8F5126507B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A71205-CFDC-4142-9086-8F5126507B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
