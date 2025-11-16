@@ -17,7 +17,7 @@ public class DepartmentsController : Controller
     //     var departments = DepartmentsRepository.GetDepartments(filter);
     //     return PartialView("_DepartmentList", departments);
     // }
-    
+
     [Route("/department-list/{filter?}")]
     public IActionResult SearchDepartments(string? filter)
     {
