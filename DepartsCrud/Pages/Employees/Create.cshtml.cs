@@ -1,4 +1,5 @@
-﻿using DepartsCrud.Models;
+﻿using DepartsCrud.Helpers;
+using DepartsCrud.Models;
 using DepartsCrud.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,7 +21,8 @@ public class Create : PageModel
     {
         if (!ModelState.IsValid)
         {
-            return RedirectToPage("/Error");
+            var errors = ModelStateHelper.GetErrors(ModelState);
+            return RedirectToPage("/Error", new { errors });
         }
 
         if (this.EmployeeViewModel is not null && this.EmployeeViewModel.Employee is not null)

@@ -1,4 +1,5 @@
-﻿using DepartsCrud.Models;
+﻿using DepartsCrud.Helpers;
+using DepartsCrud.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepartsCrud.Controllers;
@@ -40,7 +41,7 @@ public class DepartmentsController : Controller
     [HttpPost]
     public IActionResult Edit(Department department)
     {
-        if (!ModelState.IsValid) return View("Error", GetErrors());
+        if (!ModelState.IsValid) return View("Error", ModelStateHelper.GetErrors(ModelState));
 
         DepartmentsRepository.UpdateDepartment(department);
 
@@ -56,7 +57,7 @@ public class DepartmentsController : Controller
     [HttpPost]
     public IActionResult Create(Department department)
     {
-        if (!ModelState.IsValid) return View("Error", GetErrors());
+        if (!ModelState.IsValid) return View("Error", ModelStateHelper.GetErrors(ModelState));
 
         DepartmentsRepository.AddDepartment(department);
         return RedirectToAction(nameof(Index));
@@ -69,7 +70,7 @@ public class DepartmentsController : Controller
         if (department is null)
         {
             ModelState.AddModelError("id", "Department not found");
-            return View("Error", GetErrors());
+            return View("Error", ModelStateHelper.GetErrors(ModelState));
         }
 
         DepartmentsRepository.DeleteDepartment(department);
@@ -77,13 +78,4 @@ public class DepartmentsController : Controller
     }
 
 
-    private List<string> GetErrors()
-    {
-        var errorMessages = new List<string>();
-        foreach (var value in ModelState.Values)
-        foreach (var error in value.Errors)
-            errorMessages.Add(error.ErrorMessage);
-
-        return errorMessages;
-    }
 }
