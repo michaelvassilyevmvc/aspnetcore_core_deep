@@ -26,17 +26,19 @@
 <br/>
 <a href="/departments/create" class="btn btn-primary">Add</a>
 
-<script>
-    loadDepartments('');
+@section scripts{
+    <script>
+        loadDepartments('');
 
-    document.querySelector("#search-button").addEventListener("click", async (e) => {
-        var filter = document.querySelector("#search-filter").value.trim();
-        await loadDepartments(filter);
-    });
+        document.querySelector("#search-button").addEventListener("click", async (e) => {
+            var filter = document.querySelector("#search-filter").value.trim();
+            await loadDepartments(filter);
+        });
 
-    async function loadDepartments(filter) {
-        var response = await fetch(`/department-list/${filter}`);
-        var departmentsHTML = await response.text();
-        document.querySelector("#department-list").innerHTML = departmentsHTML;
-    }
-</script>
+        async function loadDepartments(filter) {
+            var response = await fetch(`/department-list/${filter}`);
+            var departmentsHTML = await response.text();
+            document.querySelector("#department-list").innerHTML = departmentsHTML;
+        }
+    </script>
+}

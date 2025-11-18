@@ -32,36 +32,27 @@
     </tr>
     </thead>
     <tbody id="employee-list">
-    @if (Model.Employees is not null && Model.Employees.Count > 0)
-    {
-        foreach (var emp in Model.Employees)
-        {
-            <tr>
-                <td>@emp.Name</td>
-                <td>@emp.Position</td>
-                <td>@emp.Salary</td>
-                <td><a class="btn btn-link" href="/departments/details/@emp.DepartmentId">@emp.Department?.Name</a></td>
-                <td><a class="btn btn-link" href="/employees/edit/@emp.Id">Edit</a></td>
-            </tr>
-        }
-    }
+    
     </tbody>
 </table>
 
 <br/>
 <a href="/employees/create" class="btn btn-primary">Add</a>
- 
-@* <script> *@
-@*     loadDepartments(''); *@
-@* *@
-@*     document.querySelector("#search-button").addEventListener("click", async (e) => { *@
-@*         var filter = document.querySelector("#search-filter").value.trim(); *@
-@*         await loadDepartments(filter); *@
-@*     }); *@
-@* *@
-@*     async function loadDepartments(filter) { *@
-@*         var response = await fetch(`/department-list/${filter}`); *@
-@*         var departmentsHTML = await response.text(); *@
-@*         document.querySelector("#department-list").innerHTML = departmentsHTML; *@
-@*     } *@
-@* </script> *@
+
+@section scripts{
+    <script>
+        loadEmployees('');
+
+        document.querySelector("#search-button").addEventListener("click", async (e) => {
+            var filter = document.querySelector("#search-filter").value.trim();
+            await loadEmployees(filter);
+        });
+
+        async function loadEmployees(filter) {
+            var response = await fetch(`/employees?filter=${filter}&handler=SearchEmployeeResult`);
+            var html = await response.text();
+            document.querySelector("#employee-list").innerHTML = html;
+        }
+    </script>
+
+}
