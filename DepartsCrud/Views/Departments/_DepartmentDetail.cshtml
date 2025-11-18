@@ -27,6 +27,11 @@
             <a href="/departments" class="btn btn-secondary">Cancel</a>
         </div>
         <div class="col-6">
+            @if (ViewBag.Action == "edit")
+            {
+                <a href="/employees/departmentemployees/@Model.Id" class="btn btn-link">Check Employees</a>
+            }
         </div>
     </div>
 </form>
+<br>

@@ -5,8 +5,8 @@ namespace DepartsCrud.Pages.Shared.Components.EmployeeList;
 
 public class EmployeeListViewComponent: ViewComponent
 {
-    public IViewComponentResult Invoke(string? filter = null)
+    public IViewComponentResult Invoke(string? filter, int? departmentId )
     {
-        return View(EmployeesRepository.GetEmployees(filter));
+        return View(EmployeesRepository.GetEmployees(filter, departmentId));
     }
 }
