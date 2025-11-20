@@ -5,7 +5,11 @@
     <tr>
         <td>@Model.Name</td>
         <td>@Model.Description</td>
-        <td><a href="/departments/details/@Model.Id" class="btn btn-link">Edit</a>
+        <td><a asp-controller="Departments" 
+               asp-action="Details" 
+               asp-route-id="@Model.Id" 
+               asp-route-color="red"
+               class="btn btn-link">Edit</a>
             <form method="post" action="/departments/delete/@Model.Id" style="display: inline-block">
                 <button type="submit" class="btn btn-link">Delete</button>
             </form>
