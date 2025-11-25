@@ -20,6 +20,7 @@
     </tr>
     </thead>
     <tbody id="employee-list">
-        @await Component.InvokeAsync("EmployeeList", new {filter = "", departmentId = Model.DepartmentId})    
+    @* @await Component.InvokeAsync("EmployeeList", new {filter = "", departmentId = Model.DepartmentId})  *@
+    <vc:employee-list filter="" department-id="@Model.DepartmentId"></vc:employee-list>
     </tbody>
 </table>

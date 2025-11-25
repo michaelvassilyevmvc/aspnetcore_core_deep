@@ -9,7 +9,8 @@
     <h3>Edit Employee</h3>
 }
 
-@await Html.PartialAsync("_EmployeeDetail", Model.EmployeeViewModel)
+@* @await Html.PartialAsync("_EmployeeDetail", Model.EmployeeViewModel) *@
+<partial name="_EmployeeDetail" model="@Model.EmployeeViewModel" />
 
 <form name="deleteEmployeeForm" method="post"
       asp-page="/employees/edit"
