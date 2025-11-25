@@ -1,8 +1,10 @@
 ﻿namespace DepartsCrud.Models;
 
-public static class EmployeesRepository
+public  class EmployeesRepository : IEmployeesRepository
 {
-    private static readonly List<Employee> _employees = new()
+    private readonly IDepartmentsRepository _repository;
+
+    private  readonly List<Employee> _employees = new()
     {
         new Employee(1, "John Doe", "Engineer", 60000, 1),
         new Employee(2, "Jane Smith", "Manager", 75000, 1),
@@ -18,9 +20,14 @@ public static class EmployeesRepository
         new Employee(12, "Isabelle Nguyen", "Technician", 57000, 3)
     };
 
-    public static List<Employee> GetEmployees(string? filter = null, int? departmentId = null)
+    public EmployeesRepository(IDepartmentsRepository repository)
     {
-        foreach (var emp in _employees) emp.Department = DepartmentsRepository.GetDepartmentById(emp.DepartmentId);
+        _repository = repository;
+    }
+
+    public  List<Employee> GetEmployees(string? filter = null, int? departmentId = null)
+    {
+        foreach (var emp in _employees) emp.Department = _repository.GetDepartmentById(emp.DepartmentId);
 
         if (departmentId.HasValue)
             return _employees.Where(x => x.DepartmentId == departmentId.Value)
@@ -34,12 +41,12 @@ public static class EmployeesRepository
         return _employees;
     }
 
-    public static Employee? GetEmployeeById(int id)
+    public  Employee? GetEmployeeById(int id)
     {
         return _employees.FirstOrDefault(x => x.Id == id);
     }
 
-    public static void AddEmployee(Employee? employee)
+    public  void AddEmployee(Employee? employee)
     {
         if (employee is not null)
         {
@@ -49,7 +56,7 @@ public static class EmployeesRepository
         }
     }
 
-    public static bool UpdateEmployee(Employee? employee)
+    public  bool UpdateEmployee(Employee? employee)
     {
         if (employee is not null)
         {
@@ -68,7 +75,7 @@ public static class EmployeesRepository
         return false;
     }
 
-    public static bool DeleteEmployee(Employee? employee)
+    public  bool DeleteEmployee(Employee? employee)
     {
         if (employee is not null)
         {

@@ -8,13 +8,21 @@ namespace DepartsCrud.Pages.Employees;
 
 public class Create : PageModel
 {
+    private readonly IDepartmentsRepository _departmentsRepository;
+    private readonly IEmployeesRepository _employeesRepository;
+
+    public Create(IDepartmentsRepository departmentsRepository, IEmployeesRepository employeesRepository)
+    {
+        _departmentsRepository = departmentsRepository;
+        _employeesRepository = employeesRepository;
+    }
     [BindProperty] public EmployeeViewModel? EmployeeViewModel { get; set; }
 
     public void OnGet()
     {
         this.EmployeeViewModel = new EmployeeViewModel();
         this.EmployeeViewModel.Employee = new Employee();
-        this.EmployeeViewModel.Departments = DepartmentsRepository.GetDepartments();
+        this.EmployeeViewModel.Departments = _departmentsRepository.GetDepartments();
     }
 
     public IActionResult OnPost()
@@ -27,7 +35,7 @@ public class Create : PageModel
 
         if (this.EmployeeViewModel is not null && this.EmployeeViewModel.Employee is not null)
         {
-            EmployeesRepository.AddEmployee(this.EmployeeViewModel.Employee);
+            _employeesRepository.AddEmployee(this.EmployeeViewModel.Employee);
         }
 
         return RedirectToPage("Index");

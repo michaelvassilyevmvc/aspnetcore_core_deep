@@ -6,6 +6,13 @@ namespace DepartsCrud.Controllers;
 
 public class DepartmentsController : Controller
 {
+    private readonly IDepartmentsRepository _departmentsRepository;
+
+    public DepartmentsController(IDepartmentsRepository departmentsRepository)
+    {
+        _departmentsRepository = departmentsRepository;
+    }
+    
     [HttpGet]
     public IActionResult Index()
     {
@@ -28,7 +35,7 @@ public class DepartmentsController : Controller
     [HttpGet]
     public IActionResult Details(int id)
     {
-        var department = DepartmentsRepository.GetDepartmentById(id);
+        var department = _departmentsRepository.GetDepartmentById(id);
         if (department == null)
             return View("Error", new List<string>
             {
@@ -43,7 +50,7 @@ public class DepartmentsController : Controller
     {
         if (!ModelState.IsValid) return View("Error", ModelStateHelper.GetErrors(ModelState));
 
-        DepartmentsRepository.UpdateDepartment(department);
+        _departmentsRepository.UpdateDepartment(department);
 
         return RedirectToAction(nameof(Index));
     }
@@ -59,21 +66,21 @@ public class DepartmentsController : Controller
     {
         if (!ModelState.IsValid) return View("Error", ModelStateHelper.GetErrors(ModelState));
 
-        DepartmentsRepository.AddDepartment(department);
+        _departmentsRepository.AddDepartment(department);
         return RedirectToAction(nameof(Index));
     }
 
     [HttpPost]
     public IActionResult Delete(int id)
     {
-        var department = DepartmentsRepository.GetDepartmentById(id);
+        var department = _departmentsRepository.GetDepartmentById(id);
         if (department is null)
         {
             ModelState.AddModelError("id", "Department not found");
             return View("Error", ModelStateHelper.GetErrors(ModelState));
         }
 
-        DepartmentsRepository.DeleteDepartment(department);
+        _departmentsRepository.DeleteDepartment(department);
         return RedirectToAction(nameof(Index));
     }
 

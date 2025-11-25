@@ -8,13 +8,22 @@ namespace DepartsCrud.Pages.Employees;
 
 public class Edit : PageModel
 {
+    private readonly IEmployeesRepository _employeesRepository;
+    private readonly IDepartmentsRepository _departmentsRepository;
+
+    public Edit(IEmployeesRepository employeesRepository, IDepartmentsRepository departmentsRepository)
+    {
+        _employeesRepository = employeesRepository;
+        _departmentsRepository = departmentsRepository;
+    }
+    
     [BindProperty]
     public EmployeeViewModel? EmployeeViewModel { get; set; }
     public void OnGet(int id)
     {
         this.EmployeeViewModel = new EmployeeViewModel();
-        this.EmployeeViewModel.Employee = EmployeesRepository.GetEmployeeById(id);
-        this.EmployeeViewModel.Departments = DepartmentsRepository.GetDepartments();
+        this.EmployeeViewModel.Employee = _employeesRepository.GetEmployeeById(id);
+        this.EmployeeViewModel.Departments = _departmentsRepository.GetDepartments();
         
     }   
     
@@ -28,7 +37,7 @@ public class Edit : PageModel
 
         if (EmployeeViewModel is not null && EmployeeViewModel.Employee is not null)
         {
-            EmployeesRepository.UpdateEmployee(EmployeeViewModel.Employee);
+            _employeesRepository.UpdateEmployee(EmployeeViewModel.Employee);
         }
 
         return RedirectToPage("Index");
@@ -36,7 +45,7 @@ public class Edit : PageModel
     
     public IActionResult OnPostDeleteEmployee(int id)
     {
-        var employee = EmployeesRepository.GetEmployeeById(id);
+        var employee = _employeesRepository.GetEmployeeById(id);
         if (employee == null)
         {
             ModelState.AddModelError("id", "Employee not found");
@@ -44,7 +53,7 @@ public class Edit : PageModel
             return RedirectToPage("/Error", new { errors });
         }
         
-        EmployeesRepository.DeleteEmployee(employee);
+        _employeesRepository.DeleteEmployee(employee);
         return RedirectToPage("Index");
     }
 }
