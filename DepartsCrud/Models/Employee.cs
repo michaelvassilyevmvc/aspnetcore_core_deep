@@ -16,7 +16,6 @@ public class Employee
         Position = position;
         Salary = salary;
         DepartmentId = departmentId;
-        
     }
 
     [HiddenInput] public int Id { get; set; }
@@ -26,10 +25,10 @@ public class Employee
     [Required] public string? Position { get; set; }
 
     public double? Salary { get; set; }
+
     [Display(Name = "Department")]
+    [Range(1, int.MaxValue, ErrorMessage = "Department is required")]
     public int DepartmentId { get; set; }
 
     public Department? Department { get; set; }
-    
-    
 }

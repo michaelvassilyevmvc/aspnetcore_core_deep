@@ -3,6 +3,7 @@
 @if (Model is not null && Model.Employee is not null)
 {
     <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
         @if (ViewBag.Action == "edit")
         {
             <input asp-for="Employee.Id"/>
@@ -13,6 +14,7 @@
             </div>
             <div class="col-6">
                 <input class="form-control" asp-for="Employee.Name"/>
+                <span class="text-danger" asp-validation-for="Employee.Name"></span>
             </div>
         </div>
         <div class="row mb-3">
@@ -21,6 +23,8 @@
             </div>
             <div class="col-6">
                 <input class="form-control" asp-for="Employee.Position"/>
+                <span class="text-danger" asp-validation-for="Employee.Position"></span>
+                
             </div>
         </div>
         <div class="row mb-3">
@@ -29,6 +33,7 @@
             </div>
             <div class="col-6">
                 <input class="form-control" asp-for="Employee.Salary"/>
+                <span class="text-danger" asp-validation-for="Employee.Salary"></span>
             </div>
         </div>
         <div class="row mb-3">
@@ -38,20 +43,15 @@
             <div class="col-6">
                 <select
                     asp-for="Employee.DepartmentId"
-                    asp-items='Model.Departments.Select(x => new SelectListItem() { 
-                        Text = x.Name, 
-                        Value = x.Id.ToString(), 
-                        Selected = (ViewBag.Action == "edit" && x.Id == Model.Employee.DepartmentId) 
-})'
+                    asp-items='Model.Departments.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString(), Selected = (ViewBag.Action == "edit" && x.Id == Model.Employee.DepartmentId) })'
                     class="form-control">
+                    <span class="text-danger" asp-validation-for="Employee.DepartmentId"></span>
                     if (ViewBag.Action == "create")
                     {
-                        <option selected="selected" value="0">--- Please Select ---</option>
-                    } 
-                    @* else { *@
-                    @* <option value="0">--- Please Select ---</option> *@
-                    @* } *@
+                    <option selected="selected" value="0">--- Please Select ---</option>
+                    }
                 </select>
+                <span class="text-danger" asp-validation-for="Employee.DepartmentId"></span>
             </div>
         </div>
         <div class="row mb-3">
