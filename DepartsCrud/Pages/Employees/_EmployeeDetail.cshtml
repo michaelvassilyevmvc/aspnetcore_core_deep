@@ -5,64 +5,52 @@
     <form method="post">
         @if (ViewBag.Action == "edit")
         {
-            <input type="hidden" name="Employee.Id" value="@Model.Employee.Id"/>
+            <input asp-for="Employee.Id"/>
         }
         <div class="row mb-3">
             <div class="col-2">
-                <label class="col-form-label">Name</label>
+                <label class="col-form-label" asp-for="Employee.Name"></label>
             </div>
             <div class="col-6">
-                <input class="form-control" type="text" name="Employee.Name" value="@Model.Employee.Name"/>
+                <input class="form-control" asp-for="Employee.Name"/>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-2">
-                <label class="col-form-label">Position</label>
+                <label class="col-form-label" asp-for="Employee.Position"></label>
             </div>
             <div class="col-6">
-                <input class="form-control" type="text" name="Employee.Position" value="@Model.Employee.Position"/>
+                <input class="form-control" asp-for="Employee.Position"/>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-2">
-                <label class="col-form-label">Salary</label>
+                <label class="col-form-label" asp-for="Employee.Salary"></label>
             </div>
             <div class="col-6">
-                <input class="form-control" type="number" name="Employee.Salary" value="@Model.Employee.Salary"/>
+                <input class="form-control" asp-for="Employee.Salary"/>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-2">
-                <label class="col-form-label">Department</label>
+                <label class="col-form-label" asp-for="Employee.DepartmentId"></label>
             </div>
             <div class="col-6">
-                <select name="Employee.DepartmentId" class="form-control">
-                    @if (Model.Departments is not null && Model.Departments.Count > 0)
+                <select
+                    asp-for="Employee.DepartmentId"
+                    asp-items='Model.Departments.Select(x => new SelectListItem() { 
+                        Text = x.Name, 
+                        Value = x.Id.ToString(), 
+                        Selected = (ViewBag.Action == "edit" && x.Id == Model.Employee.DepartmentId) 
+})'
+                    class="form-control">
+                    if (ViewBag.Action == "create")
                     {
-                        if (ViewBag.Action == "create")
-                        {
-                            <option selected="selected" value="0">--- Please Select ---</option>
-                        }
-
-                        @foreach (var department in Model.Departments)
-                        {
-                            if (ViewBag.Action == "edit")
-                            {
-                                if (department.Id == Model.Employee.DepartmentId)
-                                {
-                                    <option selected="selected" value="@department.Id">@department.Name</option>
-                                }
-                                else
-                                {
-                                    <option value="@department.Id">@department.Name</option>
-                                }
-                            }
-                            else
-                            {
-                                <option value="@department.Id">@department.Name</option>
-                            }
-                        }
-                    }
+                        <option selected="selected" value="0">--- Please Select ---</option>
+                    } 
+                    @* else { *@
+                    @* <option value="0">--- Please Select ---</option> *@
+                    @* } *@
                 </select>
             </div>
         </div>

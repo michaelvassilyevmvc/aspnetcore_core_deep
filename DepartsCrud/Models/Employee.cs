@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DepartsCrud.Models;
 
@@ -15,16 +16,20 @@ public class Employee
         Position = position;
         Salary = salary;
         DepartmentId = departmentId;
+        
     }
 
-    public int Id { get; set; }
+    [HiddenInput] public int Id { get; set; }
 
     [Required] public string? Name { get; set; }
 
     [Required] public string? Position { get; set; }
 
     public double? Salary { get; set; }
+    [Display(Name = "Department")]
     public int DepartmentId { get; set; }
 
     public Department? Department { get; set; }
+    
+    
 }
